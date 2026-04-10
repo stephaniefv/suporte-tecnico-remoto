@@ -2,24 +2,73 @@
 
 Documentação de atendimentos reais que realizo via acesso remoto com AnyDesk/Teams. Foco em resolver no 1º contato e evitar rechamada.
 
-### 📁 Caso 01 - Outlook não envia e-mails | Erro 0x80042109
-**Sintoma relatado**: "Clico em enviar e a mensagem fica na Caixa de Saída há 2 dias"
+### 📁 Caso 01 - Simulação de falha SMTP | Porta 587 bloqueada
 
-**Diagnóstico via AnyDesk**: 
-1. Teste de conectividade: `ping smtp.office365.com` respondeu = internet ok
-2. Verifiquei Firewall do Windows: porta 587 bloqueada
-3. Antivírus Avast com "Verificar e-mails SSL" ativo interceptando conexão
+**Objetivo**: Simular um incidente real de envio de e-mails não realizado devido ao bloqueio da porta SMTP.
 
-**Solução aplicada**:
-1. Liberada porta 587 TCP de saída no Firewall do Windows Defender
-2. Adicionada exceção para `outlook.exe` no módulo E-mail do Avast
-3. Enviado e-mail teste para meu endereço com confirmação de recebimento
-
-**Tempo total**: 12 minutos | **Satisfação do usuário**: 10/10
-**Prevenção**: Desativei verificação SSL do antivírus para e-mail e criei passo a passo pro usuário
+**Ambiente utilizado**:
+- Windows 11
+- Windows Defender Firewall
+- PowerShell
+- Teste de conectividade com Office 365
 
 ---
 
+### 🧪 Etapas realizadas no laboratório
+
+**1. Simulação do incidente**
+Foi criada uma regra de saída no Windows Defender Firewall bloqueando a porta TCP 587 (SMTP).
+
+**2. Diagnóstico técnico**
+Teste executado no PowerShell:
+
+```powershell
+Test-NetConnection smtp.office365.com -Port 587
+```
+
+**Resultado inicial:**
+
+```text
+TcpTestSucceeded : False
+```
+
+**Análise:**
+- conectividade de rede ativa
+- servidor respondendo
+- falha na conexão TCP da porta 587
+
+---
+
+### 🛠️ Solução aplicada
+
+A regra de bloqueio da porta 587 foi desabilitada no Windows Defender Firewall.
+
+Novo teste realizado:
+
+```powershell
+Test-NetConnection smtp.office365.com -Port 587
+```
+
+**Resultado final:**
+
+```text
+TcpTestSucceeded : True
+```
+
+---
+
+### ✅ Resultado
+Conectividade SMTP restabelecida com sucesso.
+
+---
+
+### 📚 Aprendizados
+- Troubleshooting de rede
+- Diagnóstico de porta TCP
+- Uso do PowerShell
+- Configuração de Firewall
+- Simulação de incidente real de suporte técnico
+- 
 ### 📁 Caso 02 - "Internet caindo" a cada 10 minutos
 **Sintoma relatado**: Sites não abrem, mas WhatsApp Web continua funcionando
 
