@@ -1,0 +1,33 @@
+=== DIAGNOSTICO SUPORTE N1 ===
+Data: 13/04/2026 14:53:12
+Usuario: USUARIO-TESTE
+Maquina: PC-CLIENTE
+
+--- IP E REDE ---
+Adaptador de Rede sem Fio Wi-Fi:
+   Endereco IPv4. . . . . . : 10.0.0.118
+   Mascara de Sub-rede . . . . . . . : 255.255.255.0
+   Gateway Padrao. . . . . . : 10.0.0.1
+
+--- PING GOOGLE ---
+Disparando 8.8.8.8 com 32 bytes de dados:
+Resposta de 8.8.8.8: bytes=32 tempo=13ms TTL=110
+Resposta de 8.8.8.8: bytes=32 tempo=12ms TTL=110
+Pacotes: Enviados = 2, Recebidos = 2, Perdidos = 0 (0% de perda)
+Minimo = 12ms, Maximo = 13ms, Media = 12ms
+
+--- DNS ---
+Servidor:  meuintelbras.local
+Address:  10.0.0.1
+Nome:    google.com
+Addresses:  172.217.162.206
+
+--- ESPACO DISCO C: ---
+9 pasta(s)   53.697.093.632 bytes disponiveis
+
+--- PROCESSOS ATIVOS - TOP 5 ---
+chrome.exe                    4168 Console                    2    263.832 K
+explorer.exe                 14992 Console                    2    207.460 K
+Notepad.exe                  21068 Console                    2    166.056 K
+chrome.exe                   19576 Console                    2    147.928 K
+WindowsTerminal.exe          14852 Console                    2     98.612 K
