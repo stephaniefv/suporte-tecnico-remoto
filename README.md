@@ -87,12 +87,25 @@ Conectividade SMTP restabelecida com sucesso.
 
 ---
 
-### 🤖 Automação n8n - Triagem Inteligente de Chamados
-Fluxo que recebe abertura de chamado via formulário Google → IA classifica se é Rede, Office, Hardware → Responde automaticamente pedindo print do erro + versão do Windows → Cria card no Trello com etiqueta de prioridade. 
+### 🤖 Automação: Coletor de Diagnóstico N1 para Windows
 
-**Resultado**: Redução de 60% no tempo de primeira resposta em testes.
+**Problema**: Chamados N1 iniciam com 10min de coleta manual via chat: "abre cmd, digita ipconfig, me manda print". Isso aumenta TMA e frustra o usuário. Ambientes corporativos com OneDrive quebram scripts comuns que apontam pro Desktop errado.
 
-**Stack que domino**: Windows 10/11, Linux Ubuntu, AnyDesk, TeamViewer, GLPI, Zendesk, Jira, n8n, ITIL 4, TCP/IP, DNS, DHCP
+**Solução**: Script `.bat` executável com duplo-clique. Coleta automática de IP, Gateway, DNS, teste de conectividade, espaço em disco e processos ativos. Compatível com OneDrive e Windows 11 sem `wmic`.
 
-**Buscando**: 1ª oportunidade CLT 100% remota como Analista de Suporte Técnico Júnior.
+**Como funciona**:
+1. Usuário executa `diagnostico-n1.bat` recebido por e-mail
+2. Script gera `diagnostico-suporte.txt` na Área de Trabalho em 5s
+3. Usuário anexa o .txt ao chamado
+4. Analista inicia atendimento já com rede, DNS e disco validados
+
+**Impacto**: Reduz tempo de triagem de 10min para 30s. Elimina 3 hipóteses antes do acesso remoto: problema de rede, DNS ou disco cheio. Aumenta resolução em 1º contato.
+
+**Diferencial técnico**: Trata redirecionamento de pasta do OneDrive corporativo via consulta ao registro do Windows. Usa comandos nativos compatíveis com políticas restritivas de GPO.
+
+**Arquivos**: 
+- Script: [`/scripts/diagnostico-n1.bat`](/scripts/diagnostico-n1.bat)
+- Exemplo de saída: [`/docs/exemplo-diagnostico.txt`](/docs/exemplo-diagnostico.txt)
+
+---
 **Contato**: stephanievale94@gmail.com | (21) 97291-7740
